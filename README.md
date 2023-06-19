@@ -20,7 +20,7 @@ I just code stuff.<br/>
 
 The reason why I started to code is making an open-world space game as hobby.<br/>
 It happened in the summer before highschool.<br/>
-I have been keep trying to make it since I first start to code.<br/>
+I have been keep trying to make it since.<br/>
 Started from strach to coding it more than 10 times over the years maybe 20 and everytime it has gotten better.<br/>
 Everytime I have learned more, and since the goal is too big, it made me learn many things.<br/>
 But all of them are private repos for now.<br/>
