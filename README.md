@@ -1,29 +1,27 @@
-### Hi there 👋
+# Hello, I'm Shiba! 👋
 
-I'm Shiba, I had the name shiba way way way before it was popular.
+I had the name Shiba way way way before it was popular. 
 
-I code what I wanna code to stop the itching in my brain.<br/>
-I just need to take the stuff out of my brain, so I can stop thinking about it.<br/>
-I'm not good at coding for someone else.<br/>
-I'm not good with deadlines.<br/>
-I just code stuff.<br/>
+I code to satisfy the constant itch in my brain and bring my ideas to life. Coding is my way of unleashing my thoughts so they don't consume me.
 
-- 🔭 I’m currently working on "things"
-- 🌱 I’m currently learning "everything"
-- 👯 I’m looking to collaborate on "nothing"
-- 🤔 I’m looking for help with "coding friend"
-- 💬 Ask me about "[DeepDoge/eternis](https://github.com/DeepDoge/eternis) and [DeepDoge/master-ts](https://github.com/DeepDoge/master-ts)"
-- 📫 How to reach me: "discord: nomadshiba"
-- 🍙 Also wanna make my own programming or scripting language [DeepDoge/breeze-script](https://github.com/DeepDoge/breeze-script)
+I'm not the best at coding for someone else, and deadlines can be a challenge for me. I prefer to work on my own projects, where I can let my creativity run wild.
 
-#### How I started to code
+- 🔭 Currently, I'm working on various projects that intrigue me.
+- 🌱 I'm constantly learning and expanding my knowledge in every direction.
+- 👯 I'm not actively seeking collaborations at the moment.
+- 🤔 However, I would love to find a coding friend who shares my passion.
+- 💬 Feel free to ask me about my projects [DeepDoge/eternis](https://github.com/DeepDoge/eternis) and [DeepDoge/master-ts](https://github.com/DeepDoge/master-ts).
+- 📫 You can reach me on Discord: nomadshiba.
+- 🍙 Additionally, I aspire to create my own programming or scripting language called [DeepDoge/breeze-script](https://github.com/DeepDoge/breeze-script).
 
-The reason why I started to code is making an open-world space game as hobby.<br/>
-It happened in the summer before highschool.<br/>
-I have been keep trying to make it since.<br/>
-Started from strach to coding it more than 10 times over the years maybe 20 and everytime it has gotten better.<br/>
-Everytime I have learned more, and since the goal is too big, it made me learn many things.<br/>
-But all of them are private repos for now.<br/>
-But I have videos at [Odysee Channel](https://odysee.com/@shibadev:7) and [YouTube Mirror](https://www.youtube.com/channel/UCHuCY46PDzE4PzwIOu4E2EQ)
+## How I Started Coding
 
-*Temporary Donation Address: 0x28454C1Cc17f303695747a014A353F24e5D9B45D*
+My coding journey began with a lofty goal: creating an open-world space game as a hobby. This ambition took hold of me during the summer before high school, and I've been tirelessly pursuing it ever since.
+
+Over the years, I've restarted the project from scratch more times than I can count—perhaps 10, maybe even 20. However, with each iteration, my skills have grown, and the game has improved. The grandness of the goal has pushed me to learn various aspects of development.
+
+Although these projects remain private repositories for now, I have documented my progress on my [Odysee Channel](https://odysee.com/@shibadev:7) and [YouTube Mirror](https://www.youtube.com/channel/UCHuCY46PDzE4PzwIOu4E2EQ).
+
+Donations address: 0x28454C1Cc17f303695747a014A353F24e5D9B45D
+
+— Written by ChatGPT 
