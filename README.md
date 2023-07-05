@@ -18,5 +18,3 @@ Although these projects remain private repositories for now, I have videos on my
 
 Donations address: 0x28454C1Cc17f303695747a014A353F24e5D9B45D<br/>
 Discord: nomadshiba
-
-— Written by ChatGPT 
