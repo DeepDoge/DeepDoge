@@ -16,7 +16,7 @@ The grandness of the goal has pushed me to learn various aspects of coding and c
 
 Although these projects remain private repositories for now, I have videos on my [Odysee Channel](https://odysee.com/@shibadev:7) and [YouTube Mirror](https://www.youtube.com/channel/UCHuCY46PDzE4PzwIOu4E2EQ).
 
-Donations address: 0x28454C1Cc17f303695747a014A353F24e5D9B45D
+Donations address: 0x28454C1Cc17f303695747a014A353F24e5D9B45D<br/>
 Discord: nomadshiba
 
 — Written by ChatGPT 
