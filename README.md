@@ -10,6 +10,8 @@ I'm not good at coding for others, never trust me with deadlines.
 
 I like coding my ideas.
 
+I have lot's of prototype projects and unfinished stuff, but will be finished.
+
 Odysee: [odysee.com/@shibadev:7](https://odysee.com/@shibadev:7)
 
 Discord: nomadshiba
