@@ -11,6 +11,6 @@ Odysee: [odysee.com/@shibadev:7](https://odysee.com/@shibadev:7)
 Discord: nomadshiba
 
 You can donate me at:
-- **BTC:** `bc1q7hgsnth4ytpr9rzcvf7cfyc8umncpd32cc92kt`
-- **0x:** `0x89326d4495C4288a82B5986c56Ac16790213cC02` *( ETH / ERC20( USDT / USDC / etc.. ) / AVAX / OPTIMISM / MATIC / BSC / Anything 0x )*
+- **BTC:** `...`
+- **0x:** `0x0071a5c73e66cbd5D5c839fA420e573d05F99Dd2` *( ETH / ERC20( USDT / USDC / etc.. ) / AVAX / OPTIMISM / MATIC / BSC / Anything 0x )*
 - **[Odysee](https://odysee.com/@shibadev:7)**
