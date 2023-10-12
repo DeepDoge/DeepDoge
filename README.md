@@ -10,6 +10,6 @@ Odysee: [odysee.com/@shibadev:7](https://odysee.com/@shibadev:7)
 
 Discord: nomadshiba
 
-- **BTC:** `bc1q92rtg2uhk73kp79wutvdc6mpyxv9m6j7cyztgh`
-- **0x:** `0x0071a5c73e66cbd5D5c839fA420e573d05F99Dd2` *( ETH / ERC20( USDT / USDC / etc.. ) / AVAX / OPTIMISM / MATIC / BSC / Anything 0x )*
+- **Bitcoin:** bc1q92rtg2uhk73kp79wutvdc6mpyxv9m6j7cyztgh
+- **ETH/0x:** 0x0071a5c73e66cbd5D5c839fA420e573d05F99Dd2
 - **Odysee:** [odysee.com/@shibadev](https://odysee.com/@shibadev:7)
