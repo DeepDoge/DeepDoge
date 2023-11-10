@@ -10,6 +10,6 @@ Odysee: [odysee.com/@shibadev:7](https://odysee.com/@shibadev:7)
 
 Discord: nomadshiba
 
-- **Bitcoin:** bc1q92rtg2uhk73kp79wutvdc6mpyxv9m6j7cyztgh
-- **ETH/0x:** 0x0071a5c73e66cbd5D5c839fA420e573d05F99Dd2
+- **Bitcoin:** bc1qulad7tn94ctk52dxwh5670wmmzaxnxqawmxnyz
+- **ETH/0x:** 0x63dF05a108a5980020b52b69280e2Ba805292988
 - **Odysee:** [odysee.com/@shibadev](https://odysee.com/@shibadev:7)
