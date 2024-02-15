@@ -6,8 +6,6 @@ I code to satisfy the itching in my brain.
 
 I code stuff, so I can stop thinking about coding them.
 
-Odysee: [odysee.com/@shibadev:7](https://odysee.com/@shibadev:7)
-
 Discord: nomadshiba
 
 - **Bitcoin:** bc1qulad7tn94ctk52dxwh5670wmmzaxnxqawmxnyz
