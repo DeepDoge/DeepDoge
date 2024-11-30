@@ -16,6 +16,10 @@ coding to scratch that itch on the weekends
 
 - BTC (P2WPKH)
 
+  <p align="center">
+  <img src="https://raw.githubusercontent.com/DeepDoge/DeepDoge/refs/heads/master/SmartSelect_20241201-011723_Brave.jpg" width="150px" height="auto" />
+  <p/>
+
   ```
   bc1qumgsgyh9tdw93dc8r4as290l99xgs8c2h7u00e
   ```
