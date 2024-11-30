@@ -24,7 +24,7 @@ coding to scratch that itch on the weekends
 - BTC (Lightning BOLT12)
 
   <p align="center">
-  <img src="https://raw.githubusercontent.com/DeepDoge/DeepDoge/refs/heads/master/SmartSelect_20241201-010001_Phoenix.jpg" width="200px" height="auto" />
+  <img src="https://raw.githubusercontent.com/DeepDoge/DeepDoge/refs/heads/master/SmartSelect_20241201-010001_Phoenix.jpg" width="150px" height="auto" />
   <p/>
 
   ```
