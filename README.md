@@ -12,7 +12,7 @@ Discord: nomadshiba
 coding to buy BTC during the week, 
 coding to scratch that itch on the weekends
 
-help me scratch the itch more:
+#### help me scratch the itch more:
 
 BTC (P2WPKH)
 ```
