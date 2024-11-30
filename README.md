@@ -14,14 +14,14 @@ coding to scratch that itch on the weekends
 
 #### help me scratch the itch more:
 
-BTC (P2WPKH)
+- BTC (P2WPKH)
 
 ```
 bc1qumgsgyh9tdw93dc8r4as290l99xgs8c2h7u00e
 ```
 
 
-BTC (Lightning BOLT12)
+- BTC (Lightning BOLT12)
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/DeepDoge/DeepDoge/refs/heads/master/SmartSelect_20241201-010001_Phoenix.jpg" width="200px" height="auto" />
@@ -32,7 +32,7 @@ lno1zrxq8pjw7qjlm68mtp7e3yvxee4y5xrgjhhyf2fxhlphpckrvevh50u0qwaq7n4sa3a3ukghu033
 ```
 
 
-BTC (LNURL)
+- BTC (LNURL)
 
 ```
 ₿bigstep57@phoenixwallet.me
