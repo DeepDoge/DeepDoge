@@ -30,3 +30,10 @@ BTC (Lightning BOLT12)
 ```
 lno1zrxq8pjw7qjlm68mtp7e3yvxee4y5xrgjhhyf2fxhlphpckrvevh50u0qwaq7n4sa3a3ukghu033n0s8gv05rdpqfl9n9wfdsga50t46kl3fkqsrradwcd8ctp87ky65cc2nlpaayxgz9p83p8ezx3tmekvjvzx5mdmqqvu6hy62t2kdpfxst3rw2q4w7fjz9rsv4v6eqnu7zz9qwfvgvl548spkkqma7gywkd44z9p2855ytm2c0na6qtnk5ld7lxehrzevr2zzw5dr90t8786hsuyl2dttrs07ktjr0g8gqqqsyavyeg7lfrdgxsd3n6yx5fawag
 ```
+
+
+BTC (LNURL)
+
+```
+₿bigstep57@phoenixwallet.me
+```
