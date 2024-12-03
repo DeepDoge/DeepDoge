@@ -2,13 +2,8 @@
 
 I had the name Shiba way way way before it was popular. 
 
-I code to satisfy the itching in my brain.
-
-I code stuff, so I can stop thinking about coding them.
-
-#### Status:
-coding to buy BTC during the week, 
-coding to scratch that itch on the weekends
+Coding to buy BTC during the week,<br/>
+Coding to scratch that itch on the weekends
 
 #### help me scratch the itch more:
 
