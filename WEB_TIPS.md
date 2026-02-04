@@ -76,6 +76,6 @@ when to use `<dialog>`
 - (talk about respecting the user's browser settings and defaults)
 - (talk about custom-elements)
 - (talk about how shadowdom is seperated and not have to be used with custom-elements, and when they should be used instead)
-- (talk about layout shifts, sizing things, layout, grid, and how flex shouldnt be your default choise)
+- (talk about layout shifts, sizing things, layout, grid, and how flex shouldnt be your default choise, issues: parent control vs child control, justify-align: content behvior. etc)
 - (talk about using semantic html with scoped classless css, mention tags like, small, search, dd,dt,dl, ul, ol, li, article, section+aria-label, etc...)
 - (talk about css container queries and style selectors, how they can be used)
