@@ -1,43 +1,43 @@
 # Rust-Flavored TypeScript: Structs, Traits, and Impls Without Classes
 
-## The Problem With Classes in TypeScript
-
-Classes in TypeScript bundle data and behavior together. You define a shape, attach methods to it, use `this`
-everywhere, and before long you're deep in inheritance chains, decorator patterns, and wondering why your "simple data
-object" has fifteen methods on its prototype.
+## Core Utilities (copy/paste)
 
 ```typescript
-class Square {
-	constructor(public size: number) {}
-	draw(delay: number) {
-		console.log(`Drawing ${this.size} after ${delay}ms`);
-	}
-	resize(factor: number) {
-		this.size *= factor;
-	}
+export type Trait<Self = any> = {
+    [key: string]: (self: Self, ...args: any) => any;
+};
+
+export type Impl<Self = any, Traits extends Trait<Self> = {}> = {
+    [key: string]:
+        | ((...args: any) => Promise<Self> | Self)
+        | ((self: Self, ...args: any) => any);
+} & Traits;
+
+export type ExtractTrait<T, Self> = {
+    [K in keyof T as T[K] extends (self: Self, ...args: any) => any ? K : never]: T[K];
+};
+
+export type Dyn<T extends Trait> = {
+    [K in keyof T]: T[K] extends (self: any, ...args: infer A) => infer R ? (...args: A) => R : T[K];
+};
+
+export function dyn<T extends Impl<Self>, Self>(
+    impl: T,
+    instance: Self,
+): Dyn<ExtractTrait<T, Self>> {
+    return new Proxy(impl, {
+        get(target, prop, receiver) {
+            const value = Reflect.get(target, prop, receiver);
+            if (typeof value === "function") return (...args: any[]) => value(instance, ...args);
+            return value;
+        },
+    }) as never;
 }
 ```
 
-This works, but it's opaque. The data isn't separable from the behavior. You can't serialize a `Square` without
-stripping methods. You can't compose behaviors without reaching for mixins or multiple inheritance hacks. And `this` is
-a footgun that never stops firing.
+## Structs
 
-What if we took the Rust approach instead — but adapted it for idiomatic TypeScript?
-
-## The Core Idea
-
-Rust separates three concerns cleanly:
-
-- **Structs** — plain data, no methods
-- **Traits** — interfaces that define behavior
-- **Impls** — blocks that attach behavior to structs, optionally implementing traits
-
-We can express all three in TypeScript using only `type` and `const`, zero classes, and a couple of utility types that
-fit in six lines.
-
-## Structs: Just Data
-
-A struct is a plain type alias. No methods. No `this`. Just the shape of the data.
+Structs are plain data types (no methods).
 
 ```typescript
 export type Circle = { radius: number };
@@ -45,142 +45,98 @@ export type Square = { size: number };
 export type Point = { x: number; y: number };
 ```
 
-When composing structs, use nesting instead of intersection types. This keeps things readable, debuggable, and
-structurally honest — a `Square` _has_ a position, it doesn't _become_ one.
+Struct composition uses nesting (not intersection).
 
 ```typescript
 // ✅ Nested composition
 export type Square = {
-	size: number;
-	position: Point;
+    size: number;
+    position: Point;
 };
 
-// ❌ Intersection (flattens unrelated concerns)
+// ❌ Intersection
 export type Square = Point & {
-	size: number;
+    size: number;
 };
 ```
 
-Structs are always serializable. You can `JSON.stringify` them, store them, send them over the wire. They're just data.
+## Traits
 
-## Traits: Contracts for Behavior
-
-A trait is a generic type where every method takes `self: S` as the first parameter. The generic `S` is the struct the
-trait operates on.
+Traits are generic types. Every method takes `self: Self` as the first parameter. `Self` defaults to `any`.
 
 ```typescript
-export type Drawable<S> = {
-	draw(self: S, delay: number): void;
+export type Drawable<Self = any> = {
+    draw(self: Self, delay: number): void;
 };
 
-export type Resizeable<S> = {
-	resize(self: S, factor: number): void;
+export type Resizeable<Self = any> = {
+    resize(self: Self, factor: number): void;
 };
 ```
 
-This is the key insight: **traits don't know which struct they'll be attached to**. They define a contract — "anything
-that implements `Drawable` must have a `draw` method that takes the thing itself and a delay."
+### Supertraits
+
+A trait can require another trait via intersection.
+
+```typescript
+export type Fancy<Self = any> = Drawable<Self> & {
+    sparkle(self: Self): void;
+};
+```
 
 ### Default Impls
 
-Just like Rust, a trait can provide default method implementations. Give the trait a companion `const` with the same
-name:
+A trait can have a companion const with generic default implementations.
 
 ```typescript
 export const Drawable = {
-	draw<S>(self: S, delay: number) {
-		console.log(`Drawing after ${delay}ms`);
-	},
+    draw<Self>(self: Self, delay: number) {
+        console.log(`Drawing after ${delay}ms`);
+    },
 };
 ```
 
-Structs that implement `Drawable` can delegate to this default or provide their own.
+## Impls
 
-## The Glue: Two Utility Types
+Impls are `const` objects (same name as the struct type). Always use `satisfies` on the object literal.
 
-The entire system is held together by two small types:
+- `satisfies Impl<Self>`: inherent methods only
+- `satisfies Impl<Self, Traits>`: inherent + trait methods
 
-```typescript
-export type Trait<S> = {
-	[key: string]: (self: S, ...args: any) => any;
-};
-
-export type Impl<S, Traits extends Trait<S> = {}> = {
-	[key: string]:
-		| ((...args: any) => Promise<S> | S)
-		| ((self: S, ...args: any) => any);
-} & Traits;
-```
-
-**`Trait<S>`** constrains that every method in a trait object takes `self: S` first.
-
-**`Impl<S, Traits?>`** says: "this object contains methods that either:
-
-- take `self: S` and do something (trait methods), or
-- return `S` (inherent methods like constructors/factories)
-
-...and it also satisfies the given `Traits`."
-
-That's it. No generics gymnastics, no mapped conditional inference nightmares. Just an index signature and an
-intersection.
-
-## Impls: Where Behavior Lives
-
-An impl is a `const` object that shares the same name as the struct type (TypeScript lets types and values occupy the
-same name). You use `satisfies` to enforce the constraint while preserving inferred method signatures.
-
-### Inherent Methods Only
+Rules for method typing:
+- Inherent methods (e.g. `create`) **must** have an explicit return type.
+- Trait methods **must not** annotate args/return; they get contextual types from `satisfies`.
 
 ```typescript
 export const Point = {
-	create(x: number, y: number): Point {
-		return { x, y };
-	},
+    create(x: number, y: number): Point {
+        return { x, y };
+    },
 } satisfies Impl<Point>;
-```
 
-`create` returns `Point`, so `Impl<Point>` accepts it. No traits involved — these are just methods that belong to
-`Point` itself.
-
-### Implementing Traits
-
-```typescript
 export const Circle = {
-	create(radius: number): Circle {
-		return { radius };
-	},
-	draw(self, delay) {
-		return Drawable.draw(self, delay); // delegates to default
-	},
+    create(radius: number): Circle {
+        return { radius };
+    },
+    draw(self, delay) {
+        return Drawable.draw(self, delay);
+    },
 } satisfies Impl<Circle, Drawable<Circle>>;
-```
 
-The second type parameter to `Impl` is the trait (or intersection of traits) being implemented. `satisfies` checks that
-`draw` matches `Drawable<Circle>`'s signature — and **contextually types `self` and `delay`** so you don't have to
-annotate them.
-
-### Multiple Traits
-
-Compose traits with `&`:
-
-```typescript
 export const Square = {
-	create(size: number): Square {
-		return { size };
-	},
-	draw(self, delay) {
-		console.log(`Drawing a square with size ${self.size} after ${delay}ms`);
-	},
-	resize(self, factor) {
-		self.size *= factor;
-	},
+    create(size: number): Square {
+        return { size };
+    },
+    draw(self, delay) {
+        console.log(`Drawing a square with size ${self.size} after ${delay}ms`);
+    },
+    resize(self, factor) {
+        self.size *= factor;
+    },
 } satisfies Impl<Square, Drawable<Square> & Resizeable<Square>>;
 ```
 
-`self` is inferred as `Square` in every method. `delay` is `number`. `factor` is `number`. Zero annotations on the trait
-methods — `satisfies` handles it.
-
-### Using It
+Usage:
 
 ```typescript
 const square = Square.create(10);
@@ -189,65 +145,37 @@ Square.resize(square, 2);
 Square.draw(square, 500);
 ```
 
-This reads almost like Rust. The struct and its impl share a name, so `Square.create(10)` feels natural. Methods take
-the instance explicitly — no hidden `this` binding.
+## dyn() and Dyn
 
-## Why `satisfies` Instead of a Type Annotation?
-
-This is a subtle but critical decision.
-
-You might try:
+`dyn(impl, instance)` binds `self` so calls don’t require passing the instance. `Self` is inferred from `instance`.
 
 ```typescript
-export const Circle: Impl<Circle, Drawable<Circle>> = { ... };
+const square = Square.create(10);
+
+const d = dyn(Square, square);
+d.draw(500);
+d.resize(2);
 ```
 
-This _works_ for trait methods — `draw(self, delay)` gets contextual types. But it **kills inference on inherent
-methods**. The annotation locks the object's visible shape to the `Impl` index signature, so `Circle.create` becomes
-`(...args: any) => Circle | Promise<Circle>` instead of keeping its nice `(radius: number) => Circle` signature.
-
-With `satisfies`:
+`Dyn<Trait>` is the bound-call surface (same methods, but with `self` removed).
 
 ```typescript
-export const Circle = { ... } satisfies Impl<Circle, Drawable<Circle>>;
+function animate(shape: Dyn<Drawable>) {
+    shape.draw(100);
+}
+
+animate(dyn(Square, square));
+animate(dyn(Circle, Circle.create(5)));
 ```
 
-TypeScript **checks** that the object matches the constraint, but **preserves the inferred type** of the whole object.
-So `Circle.create` stays `(radius: number) => Circle`, and trait methods still get `self: Circle` from the contextual
-type. Best of both worlds.
+## Rules
 
-## The Rules, Summarized
-
-1. **Structs** are `type` aliases — pure data, no methods, nested composition over intersections
-2. **Traits** are generic types with `self: S` first parameter on every method
-3. **Impls** are `const` objects using `satisfies Impl<S, Traits?>` — never class instances
-4. Inherent methods (like `create`) must have explicit return type annotations
-5. Trait methods get their types from `satisfies` — don't annotate them
-6. Methods can only return structs (plain data) — never return objects with methods
-7. Use `&` to compose multiple traits in a single impl
-
-## Compared to Rust
-
-| Rust                                             | This Pattern                                                      |
-| ------------------------------------------------ | ----------------------------------------------------------------- |
-| `struct Circle { radius: f64 }`                  | `type Circle = { radius: number }`                                |
-| `trait Drawable { fn draw(&self, delay: u32); }` | `type Drawable<S> = { draw(self: S, delay: number): void }`       |
-| `impl Drawable for Circle { ... }`               | `const Circle = { ... } satisfies Impl<Circle, Drawable<Circle>>` |
-| `impl Circle { fn new(r: f64) -> Self { ... } }` | Same const — just add `create(r: number): Circle`                 |
-| `Circle::new(5.0)`                               | `Circle.create(5.0)`                                              |
-| `circle.draw(500)`                               | `Circle.draw(circle, 500)`                                        |
-
-The main difference is that Rust has method dispatch syntax (`circle.draw()`), while we pass `self` explicitly
-(`Circle.draw(circle, ...)`). That's the tradeoff — but it also means there's zero hidden state, zero `this` confusion,
-and everything is a plain function call on a plain object.
-
-## When This Shines
-
-- **Serialization** — structs are always JSON-safe
-- **Testing** — create test data with object literals, no constructor ceremony
-- **Composition** — traits compose with `&`, no diamond inheritance
-- **Refactoring** — behavior is in one place (the impl), data is in another (the struct)
-- **Tree-shaking** — unused impl methods are just unused object properties
-
-It's not Rust. But it's the closest you can get in TypeScript without fighting the language — and it's a lot more
-pleasant than the class-based alternative.
+1. Structs are `type` aliases: pure data, no methods
+2. Struct composition uses nesting (no intersection types for “embedding”)
+3. Traits are generic types: `type X<Self = any> = { method(self: Self, ...): ... }`
+4. Impls are `const` objects: `const X = { ... } satisfies Impl<X, Traits?>`
+5. Inherent methods: explicit return type annotation required
+6. Trait methods: no arg/return annotations; types come from `satisfies`
+7. Methods return plain data (structs) only
+8. Compose traits with `&`
+9. Use `dyn(impl, instance)` to bind `self`; use `Dyn<Trait>` to type bound objects
