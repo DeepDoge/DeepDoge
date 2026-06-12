@@ -5,7 +5,7 @@ i have to build all the time, or i get this itch.
 zap me at npub1gkp4cdh5rktehjqjnqc09awey4302dpadlka6mes4fu5spes7fhqfsppqk
 https://zapme.coffee/#npub1gkp4cdh5rktehjqjnqc09awey4302dpadlka6mes4fu5spes7fhqfsppqk
 
-slowly moving to git+nostr platforms:
+slowly moving to git+nostr platforms:\
 https://gitworkshop.dev/nomadshiba.me
 
 https://gitworkshop.dev/npub1gkp4cdh5rktehjqjnqc09awey4302dpadlka6mes4fu5spes7fhqfsppqk
