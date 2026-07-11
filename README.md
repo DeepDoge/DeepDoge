@@ -1,8 +1,3 @@
-Deno Became the Thing It Promised to Kill: 
-https://yakihonne.com/article/s/me@nomadshiba.me/ebcdf05b5a1eb75d
-
----
-
 i have to build all the time, or i get this itch.
 
 #### help me scratch the itch more:
